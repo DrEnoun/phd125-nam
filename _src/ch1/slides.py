@@ -1,6 +1,6 @@
 """PHD125 Chapter 1 · Introduction to Organic Molecule · lecture slide content.
 Sources: NAM-INTRO (LibreTexts 12.1-12.2, Sharpe Elles remix of Ball/McMurry, CC BY-NC-SA 3.0),
-NAM-ALKANE 12.4-12.5, Ball 12.1 and 12.4, FGOB 16.7, Soderberg Ch 1 (CC BY-NC-SA 4.0).
+NAM-ALKANE 12.4, Ball 12.1 and 12.4, FGOB 16.7, Soderberg Ch 1 (CC BY-NC-SA 4.0).
 Subchapter 1.5 and the history in 1.1 are Dr. NAM's own material (written for this hub)."""
 from figs import mol, grid, row
 
@@ -36,8 +36,8 @@ LO = {
 META = {
     "code": "CH1", "chapter": "Chapter 1", "title": "Introduction to Organic Molecule", "short": "Introduction to Organic Molecule",
     "sub": "PHD125 Pharmaceutical Organic Chemistry",
-    "src": "Core reference: Dr. NAM's NAM-INTRO and NAM-ALKANE notes (LibreTexts 12.1–12.5), with Ball 12.1 and 12.4",
-    "attrib": ("Adapted from LibreTexts <i>Introduction to Organic Chemistry – Alkanes</i> 12.1–12.5 (Lisa Sharpe Elles, remixed from Ball, Hill &amp; Scott), "
+    "src": "Core reference: Dr. NAM's NAM-INTRO and NAM-ALKANE notes (LibreTexts 12.1, 12.2 and 12.4), with Ball 12.1 and 12.4",
+    "attrib": ("Adapted from LibreTexts <i>Introduction to Organic Chemistry – Alkanes</i> 12.1, 12.2 and 12.4 (Lisa Sharpe Elles, remixed from Ball, Hill &amp; Scott), "
                "<i>The Basics of GOB Chemistry</i> (Ball, Hill &amp; Scott) 12.1 and 12.4, and <i>Fundamentals of General Organic and Biological Chemistry</i> 16.7, "
                "all CC BY-NC-SA 3.0; and Soderberg, <i>Organic Chemistry with a Biological Emphasis</i>, CC BY-NC-SA 4.0. Subchapter 1.5 is original material by Dr. NAM. "
                "Structures drawn with RDKit. Shared under CC BY-NC-SA for non-commercial teaching."),
@@ -67,7 +67,7 @@ def build():
     add({"t": "bullets", "title": "Lecture map", "items": [
         "<b>1.1 What is organic chemistry</b> (NAM-INTRO 12.1): from vitalism to the chemistry of carbon, and why carbon is special",
         "<b>1.2 Features of organic compounds</b> (NAM-INTRO 12.1): four bonds, chains and rings, organic vs inorganic, polarity",
-        "<b>1.3 Drawing organic molecules</b> (NAM-ALKANE 12.4–12.5): molecular, expanded, condensed and line structures, and 3D shapes",
+        "<b>1.3 Drawing organic molecules</b> (NAM-ALKANE 12.4; NAM-INTRO 12.1): molecular, expanded, condensed and line structures, and 3D shapes",
         "<b>1.4 Functional groups</b> (NAM-INTRO 12.2): the families of organic compounds, and spotting them in drugs",
         "<b>1.5 Pharmacy and everyday life</b> (new): natural vs synthetic, drugs from nature, drug names, stability, consumer products"],
          "notes": "Use the menu to jump to any subchapter. Each subchapter ends with a quick check."})
@@ -175,7 +175,7 @@ def build():
          "notes": "Answer C."})
 
     # ---------------- 1.3 ----------------
-    add({"t": "divider", "num": 3, "title": "Drawing organic molecules and their shapes", "lo": LO[3], "src": "NAM-ALKANE 12.4–12.5 · Ball 12.4",
+    add({"t": "divider", "num": 3, "title": "Drawing organic molecules and their shapes", "lo": LO[3], "src": "NAM-ALKANE 12.4 · NAM-INTRO 12.1 · Ball 12.4",
          "blurb": "Four ways to write the same molecule, and why carbon chains zig-zag."})
     add({"t": "figure", "pos": "top", "sec": 3, "lo": LO[3], "title": "Four ways to write butane",
          "fig": {"cap": "Butane two ways: expanded structural formula (left) and line-angle structure (right).",
@@ -228,7 +228,7 @@ def build():
                   ["one triple + one single", "2", "linear", "180°", "ethyne, C<sub>2</sub>H<sub>2</sub>"]],
          "widths": [2.6, 1.6, 1.8, 1.3, 2.0],
          "caption": "Because each saturated carbon is tetrahedral, carbon chains are not straight but <b>zig-zag</b>: that is why we draw line structures as zig-zags.",
-         "notes": "NAM-ALKANE 12.5. See the extra chapter on VSEPR and the Virtual Secret Lab for 3D practice."})
+         "notes": "Shapes from NAM-INTRO 12.1 (NAM-ALKANE 12.5 is an empty placeholder page). See the extra chapter on VSEPR and the Virtual Secret Lab for 3D practice."})
     add({"t": "check", "sec": 3, "lo": LO[3], "title": "Quick check",
          "q": "In a line structure, a carbon at the very end of a line, with no atom written, carries how many hydrogen atoms?",
          "opts": ["1", "2", "3", "4"], "ans": 2,

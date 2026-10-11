@@ -3,7 +3,7 @@ Tutorial Part A/B adapts Ball 12.E (Dr. NAM's ALKANE EXERCISE file) where noted;
 from figs import mol
 
 TITLE = 'Introduction to Organic Molecule'
-ATTRIB = ("Adapted from LibreTexts <i>Introduction to Organic Chemistry – Alkanes</i> 12.1–12.5 (Sharpe Elles, from Ball, Hill &amp; Scott) and "
+ATTRIB = ("Adapted from LibreTexts <i>Introduction to Organic Chemistry – Alkanes</i> 12.1, 12.2 and 12.4 (Sharpe Elles, from Ball, Hill &amp; Scott) and "
           "<i>The Basics of GOB Chemistry</i> (Ball, Hill &amp; Scott) 12.1, 12.4 and exercises 12.E, CC BY-NC-SA 3.0. Pharmacy items are original material by Dr. NAM. "
           "Shared under CC BY-NC-SA for non-commercial teaching.")
 

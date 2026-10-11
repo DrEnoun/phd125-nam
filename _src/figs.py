@@ -32,6 +32,7 @@ def _opts(d, font=0.75):
     o.padding = 0.08
     o.additionalAtomLabelPadding = 0.08
     o.setBackgroundColour((1, 1, 1, 1))
+    o.fixedBondLength = 34  # same scale for every molecule (shrinks only if it would not fit)
     return o
 
 
@@ -110,3 +111,57 @@ def row(panels, w=280, h=210, label_h=30):
         parts.append(f'<text x="{i*w + w/2}" y="{h + label_h*0.7}" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#222">{label}</text>')
     parts.append('</svg>')
     return _uri(''.join(parts))
+
+
+def scheme(parts, h=150):
+    """A reaction drawn left to right. parts: ('m', smiles, label[, width, hs]) for a structure,
+    ('+',) for a plus sign, ('>', 'above', 'below') for an arrow with conditions, ('t', 'text', width) for plain text."""
+    items, W = [], 0
+    for p in parts:
+        if p[0] == 'm':
+            w = p[3] if len(p) > 3 else 170
+            hs = p[4] if len(p) > 4 else False
+            items.append(('m', W, w, mol(p[1], w, h, hs=hs), p[2])); W += w
+        elif p[0] == '+':
+            items.append(('+', W, 34)); W += 34
+        elif p[0] == '>':
+            w = max(110, 9 * max(len(p[1]), len(p[2]) if len(p) > 2 else 0) + 30)
+            items.append(('>', W, w, p[1], p[2] if len(p) > 2 else '')); W += w
+        elif p[0] == 't':
+            w = p[2] if len(p) > 2 else 120
+            items.append(('t', W, w, p[1])); W += w
+    H = h + 30
+    o = [f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
+         f'<rect width="{W}" height="{H}" fill="#fff"/>', '<g font-family="sans-serif" fill="#222">']
+    for it in items:
+        k, x = it[0], it[1]
+        if k == 'm':
+            _, x, w, uri, label = it
+            o.append(f'<image x="{x}" y="0" width="{w}" height="{h}" href="{uri}" xlink:href="{uri}"/>')
+            if label:
+                o.append(f'<text x="{x + w/2}" y="{h + 21}" text-anchor="middle" font-size="16">{label}</text>')
+        elif k == '+':
+            o.append(f'<text x="{x + 17}" y="{h/2 + 10}" text-anchor="middle" font-size="30">+</text>')
+        elif k == '>':
+            _, x, w, a, b = it
+            y = h / 2
+            o.append(f'<line x1="{x+8}" y1="{y}" x2="{x+w-14}" y2="{y}" stroke="#222" stroke-width="2.5"/>'
+                     f'<path d="M{x+w-16} {y-7} L{x+w-6} {y} L{x+w-16} {y+7} Z" fill="#222"/>')
+            if a: o.append(f'<text x="{x + w/2 - 4}" y="{y - 12}" text-anchor="middle" font-size="16">{a}</text>')
+            if b: o.append(f'<text x="{x + w/2 - 4}" y="{y + 26}" text-anchor="middle" font-size="15" fill="#555">{b}</text>')
+        elif k == 't':
+            _, x, w, txt = it
+            o.append(f'<text x="{x + w/2}" y="{h/2 + 7}" text-anchor="middle" font-size="20">{txt}</text>')
+    o.append('</g></svg>')
+    return _uri(''.join(o))
+
+
+def stack(uris, w=900, row_h=150):
+    """Stack several figures (data URIs) vertically, each scaled into a row of the same height."""
+    H = row_h * len(uris)
+    o = [f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{w}" height="{H}" viewBox="0 0 {w} {H}">',
+         f'<rect width="{w}" height="{H}" fill="#fff"/>']
+    for i, u in enumerate(uris):
+        o.append(f'<image x="0" y="{i*row_h}" width="{w}" height="{row_h}" preserveAspectRatio="xMinYMid meet" href="{u}" xlink:href="{u}"/>')
+    o.append('</svg>')
+    return _uri(''.join(o))
