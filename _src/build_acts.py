@@ -9,6 +9,17 @@ ch = sys.argv[1]
 acts = importlib.import_module(f'{ch}.activities')
 game = importlib.import_module(f'{ch}.game')
 TPL = ROOT / '_src/templates'
+from tiering import tier, CSS as TIER_CSS
+
+
+def tier_all(data):
+    # every question, worked solution and explanation: stem, then one row per part
+    for sec in data.get('sections', []):
+        for it in sec.get('items', []):
+            for k in ('q', 'work', 'why'):
+                if k in it:
+                    it[k] = tier(it[k])
+    return data
 num = ch.upper()
 
 
@@ -32,7 +43,8 @@ for name, folder, label in [('PRE', 'pre', 'Before class'), ('POST', 'post', 'Af
     t = course((TPL / f'{folder}.html').read_text())
     i = t.index('const DATA=') + len('const DATA=')
     j = t.index(';\n', i)
-    t = t[:i] + json.dumps(data, ensure_ascii=False) + t[j:]
+    t = t[:i] + json.dumps(tier_all(data), ensure_ascii=False) + t[j:]
+    t = t.replace('</style>', ':root{--tier-accent:var(--cold)}' + TIER_CSS + '\n</style>', 1)
     t = re.sub(r'<title>.*?</title>', f'<title>PHD125 · {num} · {label}</title>', t, count=1)
     write(folder, t)
 
