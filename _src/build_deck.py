@@ -19,6 +19,28 @@ a = t.index('const S=[')
 b = t.index('const META=')
 b_end = t.index(';\n', b) + 2
 S = mod.build()
+
+
+def tier(html):
+    """'Q? (a) x (b) y' -> stem + one row per part (only when the parts run a, b, c ... in order)."""
+    if not isinstance(html, str):
+        return html
+    parts = re.split(r'\s*\(([a-h])\)\s+', html)
+    if len(parts) < 5:
+        return html
+    letters = parts[1::2]
+    if letters != [chr(97 + i) for i in range(len(letters))]:
+        return html
+    stem = parts[0].strip()
+    rows = ''.join(f'<div><b>({l})</b><span>{t.strip()}</span></div>' for l, t in zip(letters, parts[2::2]))
+    return (f'<div class="stem">{stem}</div>' if stem else '') + f'<div class="tier">{rows}</div>'
+
+
+for d in S:
+    if d.get('t') in ('tryit', 'example', 'hook'):
+        for k in ('q', 'a'):
+            if k in d:
+                d[k] = tier(d[k])
 META = dict(mod.META)
 META.setdefault('hero', 'mol')
 num = re.sub(r'\D', '', META['code'])
@@ -68,6 +90,7 @@ sub('</style>', '.divn{font:800 54px/1 var(--font-display)!important;letter-spac
     '.divp{margin:6px 0 14px!important}\n</style>')
 # shrink long divider titles so they fit (max 3 lines, about 330 px tall)
 sub("function fitTitle(s){", "function fitDiv(s){const h=s.querySelector('.divt');if(!h||h.dataset.fit)return;let f=118;while((h.scrollHeight>300||h.scrollWidth>h.clientWidth+1)&&f>56){f-=6;h.style.setProperty('font-size',f+'px','important')}h.dataset.fit=1}\nfunction fitTitle(s){fitDiv(s);")
+sub('</style>', '.tier{display:grid;gap:8px;margin-top:10px}.tier>div{display:grid;grid-template-columns:2.4em 1fr;align-items:baseline}.tier b{color:var(--spark-400)}.stem{margin-bottom:2px}\n</style>')
 sub('</style>', '.chip.sub{background:rgba(212,255,58,.14);color:var(--spark-400);border:1px solid rgba(212,255,58,.45)}\n</style>')
 
 # ---- 3D molecules: add organic molecules, and draw triple bonds
