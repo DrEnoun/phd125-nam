@@ -301,7 +301,7 @@ def build():
          "fig": {"cap": "Propene + HBr: two products are possible, but one is major.",
                  "data": scheme([('m', 'C=CC', 'propene', 130), ('+',), ('t', 'HBr', 60), ('>', '', ''), ('m', 'CC(Br)C', '2-bromopropane (major)', 190), ('t', 'not', 50), ('m', 'BrCCC', '1-bromopropane', 160)], h=120)},
          "items": ["When HX or H<sub>2</sub>O adds to an <b>unsymmetrical</b> alkene, the <b>H</b> goes to the double-bond carbon that <b>already has more H atoms</b>.",
-                   "The X (or OH) goes to the other carbon. Memory aid: \"the rich get richer\".",
+                   "The X (or OH) goes to the other carbon. Memory aid: \"the rich get richer\". Why: H<sup>+</sup> adds first so that the more stable <b>carbocation</b> (C<sup>+</sup> on the more substituted carbon) forms. You will meet carbocations again in Chapter 3.",
                    "Propene + H<sub>2</sub>O (acid) gives mainly <b>2-propanol</b> (isopropyl alcohol, the rubbing alcohol in hand rubs and swabs)."],
          "notes": "Original (Markovnikov's rule is not in Ball 13). Reason: the more stable carbocation forms; mention only if students ask."})
     add({"t": "tryit", "sec": 2, "lo": LO5, "title": "Try it · Predict the product",

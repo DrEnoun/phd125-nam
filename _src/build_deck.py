@@ -62,6 +62,12 @@ sub("const m=SEC[d.sec||d.num]||['nacl','water'];", "const m=SEC[d.sec||d.num]||
 sub("[m[2]||(m[0]==='nacl'?'water':'nacl'),1190,430,m[2]?30:26,.9]", "[m[2]||m[0],1190,430,30,.9]")
 sub("g.scale.setScalar(sz);", "const at=MOL.DEF[n].atoms;const rr=Math.max(...at.map(q=>Math.hypot(q[1],q[2],q[3])));g.scale.setScalar(sz*Math.min(1,1.9/rr));")
 # chip style for the subchapter tag
+# divider: subchapter TITLE is the hero; the number becomes a small label above it
+sub('</style>', '.divn{font:800 54px/1 var(--font-display)!important;letter-spacing:0!important;color:var(--title-accent)!important;text-shadow:none!important;margin-top:18px}'
+    '.divt{font:800 118px/.95 var(--font-display)!important;letter-spacing:-3px!important;color:var(--spark-400)!important;max-width:820px!important;text-shadow:0 0 40px rgba(212,255,79,.3);text-wrap:balance}'
+    '.divp{margin:6px 0 14px!important}\n</style>')
+# shrink long divider titles so they fit (max 3 lines, about 330 px tall)
+sub("function fitTitle(s){", "function fitDiv(s){const h=s.querySelector('.divt');if(!h||h.dataset.fit)return;let f=118;while((h.scrollHeight>300||h.scrollWidth>h.clientWidth+1)&&f>56){f-=6;h.style.setProperty('font-size',f+'px','important')}h.dataset.fit=1}\nfunction fitTitle(s){fitDiv(s);")
 sub('</style>', '.chip.sub{background:rgba(212,255,58,.14);color:var(--spark-400);border:1px solid rgba(212,255,58,.45)}\n</style>')
 
 # ---- 3D molecules: add organic molecules, and draw triple bonds
