@@ -82,7 +82,7 @@ const TOPICS=[
   subs:[['s1','3.1 Alcohols'],['s2','3.2 Ethers & Thiols'],['s3','3.3 Aldehydes & Ketones']],
   a:{pre:'ch3/pre/',slides:'ch3/slides/',post:'ch3/post/',tut:'ch3/tutorial/',game:'ch3/game/'}},
  {code:'ch4',label:'Chapter 4',title:'Carboxylic Acid, Ester, Amines, Amide',blurb:'Acids and bases of organic chemistry and their derivatives, with the drugs that contain them.',
-  subs:[['s1','4.1 Carboxylic Acids'],['s2','4.2 Esters'],['s3','4.3 Amines'],['s4','4.4 Amides']],a:{}},
+  subs:[['s1','4.1 Carboxylic Acids'],['s2','4.2 Esters'],['s3','4.3 Amines'],['s4','4.4 Amides']],a:{pre:'ch4/pre/',slides:'ch4/slides/',post:'ch4/post/',tut:'ch4/tutorial/',game:'ch4/game/'}},
  {code:'ch5',label:'Chapter 5',title:'Carbohydrates',blurb:'Monosaccharides, chirality, cyclic sugars, disaccharides and polysaccharides.',a:{}},
  {code:'ch6',label:'Chapter 6',title:'Lipids',blurb:'Fatty acids, waxes, fats and oils, phospholipids, cell membranes and steroids.',a:{}},
  {code:'ch7',label:'Chapter 7',title:'Amino Acids, Proteins and Enzymes',blurb:'Amino acids, peptides, protein structure, and how enzymes work and are inhibited by drugs.',a:{}},

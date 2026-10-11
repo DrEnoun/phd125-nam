@@ -90,6 +90,7 @@ EXTRA = {
     'urea': 'NC(N)=O', 'ethane': 'CC', 'ethene': 'C=C', 'ethyne': 'C#C', 'butane': 'CCCC', 'propanol': 'CCCO',
     'cyclohexane': 'C1CCCCC1', 'aceticacid': 'CC(=O)O', 'aspirin': 'CC(=O)Oc1ccccc1C(=O)O',
     'paracetamol': 'CC(=O)Nc1ccc(O)cc1', 'methylpropane': 'CC(C)C', 'benzene': 'c1ccccc1', 'glycerol': 'OCC(O)CO', 'diethylether': 'CCOCC', 'ethanethiol': 'CCS', 'acetaldehyde': 'CC=O', 'formaldehyde': 'C=O', 'ascorbic': 'OC[C@H](O)[C@H]1OC(=O)C(O)=C1O',
+    'formicacid': 'OC=O', 'ethylacetate': 'CCOC(C)=O', 'methylamine': 'CN', 'trimethylamine': 'CN(C)C', 'acetamide': 'CC(N)=O',
 }
 extra = ''.join(f'    {k}: {json.dumps(coords3d(v))},\n' for k, v in EXTRA.items())
 sub('    waterpair:', extra + '    waterpair:')

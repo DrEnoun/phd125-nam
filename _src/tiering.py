@@ -12,14 +12,26 @@ CSS = ('.tier{display:grid;gap:8px;margin-top:10px}'
        '.stem{margin-bottom:2px}')
 
 
-def _split(html, seq, pat):
-    parts = re.split(pat, html)
-    if len(parts) < 5:
+def _split(html, seq, pat, minlen=1):
+    # accept only labels that continue the sequence (a, b, c ...); a later "see (a)" stays as text
+    pieces, stem, last = [], None, 0
+    for m in re.finditer(pat, html):
+        if len(pieces) < len(seq) and m.group(1) == seq[len(pieces)]:
+            if stem is None:
+                stem = html[:m.start()]
+            else:
+                pieces[-1][1] = html[last:m.start()]
+            pieces.append([m.group(1), ''])
+            last = m.end()
+    if len(pieces) < 2:
         return None
-    labels = parts[1::2]
-    if labels != seq[:len(labels)]:
-        return None
-    return parts[0].strip(), list(zip(labels, parts[2::2]))
+    pieces[-1][1] = html[last:]
+    # prose such as "in (a) and (b) ..." is not a list of parts
+    for _, t in pieces:
+        plain = re.sub(r'<[^>]+>', '', t).strip()
+        if not plain or (minlen > 1 and re.match(r'(and|or|to|of|nor|,)\b', plain)):
+            return None
+    return stem.strip(), [tuple(p) for p in pieces]
 
 
 def _rows(pieces, inner):
@@ -48,7 +60,7 @@ def tier(html, roman=False, wrap=True):
             return html
         stem, pieces = r
         return (stem + ' ' if stem else '') + f'<div class="tier">{_rows(pieces, False)}</div>'
-    r = _split(html, [chr(97 + i) for i in range(8)], r'(?:^|(?<=[\s>]))\(([a-h])\)\s*(?=\S)')
+    r = _split(html, [chr(97 + i) for i in range(8)], r'(?:^|(?<=[\s>]))\(([a-h])\)\s*(?=\S)', minlen=8)
     if not r:
         return html
     stem, pieces = r
