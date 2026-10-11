@@ -81,6 +81,10 @@ sub("function fitTitle(s){", "function fitDiv(s){const h=s.querySelector('.divt'
 sub('</style>', ':root{--tier-accent:var(--spark-400)}' + TIER_CSS + '\n</style>')
 sub('</style>', '.chip.sub{background:rgba(212,255,58,.14);color:var(--spark-400);border:1px solid rgba(212,255,58,.45)}\n</style>')
 
+# tap a figure to zoom it (js/zoom.js); the tap must not turn the slide
+sub("if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev();return}", "if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev();return}\n if(window.ZOOM&&ZOOM.can(e.target.closest('img')))return;")
+sub('<script src="../../js/brand.js"></script>', '<script src="../../js/brand.js"></script>\n<script src="../../js/zoom.js" defer></script>')
+
 # ---- 3D molecules: add organic molecules, and draw triple bonds
 EXTRA = {
     'urea': 'NC(N)=O', 'ethane': 'CC', 'ethene': 'C=C', 'ethyne': 'C#C', 'butane': 'CCCC', 'propanol': 'CCCO',

@@ -3,6 +3,7 @@
 <title>PHD125 · Chapter 1 · Introduction to Organic Molecule · Slides</title>
 <script src="../../js/track.js"></script>
 <script src="../../js/brand.js"></script>
+<script src="../../js/zoom.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700;800&family=Questrial&display=swap" rel="stylesheet">
 <style>
@@ -392,6 +393,7 @@ let px=null,py=null;
 stage.addEventListener('pointerdown',e=>{px=e.clientX;py=e.clientY});
 stage.addEventListener('pointerup',e=>{if(px===null)return;const dx=e.clientX-px,dy=e.clientY-py;px=null;
  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev();return}
+ if(window.ZOOM&&ZOOM.can(e.target.closest('img')))return;
  const rb=e.target.closest('.retry');if(rb){resetCheck(rb.closest('.slide'));return}
  const o=e.target.closest('.opt');if(o){answer(o);return}
  const it=e.target.closest('.item');if(it){pickPart(it);return}

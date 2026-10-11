@@ -24,6 +24,7 @@ num = ch.upper()
 
 
 def course(t):
+    t = t.replace('<script src="../../js/brand.js"></script>', '<script src="../../js/brand.js"></script>\n<script src="../../js/zoom.js" defer></script>', 1)
     # rename the course in the engine only; applied BEFORE content is inserted
     return (t.replace('phd115', 'phd125').replace('PHD115', 'PHD125').replace('Fundamentals of Chemistry', 'Pharmaceutical Organic Chemistry')
              .replace('A periodic table and the answer key are at the back.', 'The answer key is at the back.'))
