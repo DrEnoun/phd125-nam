@@ -74,7 +74,7 @@ function render(){const L=document.getElementById('list'),cls=document.getElemen
  document.getElementById('mine').innerHTML=data.me?`You are <b>#${data.me.rank}</b> of ${data.count} on this board with <b>${data.me.s}</b> points.`:''}
 async function load(){const L=document.getElementById('list');L.innerHTML='<li class="empty" style="display:block">Loading…</li>';const id=window.NAMTRACK&&NAMTRACK.id&&NAMTRACK.id();
  try{data=await jsonp('hub_op=board&hub_topic='+cur+(id&&id.ok?'&hub_matric='+encodeURIComponent(id.matric)+'&hub_class='+encodeURIComponent(id.cls):''));if(!data||!data.ok)throw 0;render()}
- catch(e){data=null;L.innerHTML='<li class="empty" style="display:block">The leaderboard is not reachable right now. Check your internet connection, then reload the page.</li>'}}
+ catch(e){data=null;if(!(window.NAMTRACK&&NAMTRACK.ENDPOINT)){L.innerHTML='<li class="empty" style="display:block">The leaderboard opens later this semester. Meanwhile, your best score in each game is saved on your own device.</li>';return}L.innerHTML='<li class="empty" style="display:block">The leaderboard is not reachable right now. Check your internet connection, then reload the page.</li>'}}
 document.getElementById('cls').onchange=render;
 const RW=window.NAMTRACK&&NAMTRACK.REWARD;if(RW){const e=document.getElementById('rw');e.textContent='🏆 '+RW;e.hidden=false}
 tabs();load();setInterval(()=>{if(document.visibilityState==='visible')load()},90000);

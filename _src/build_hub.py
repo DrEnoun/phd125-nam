@@ -18,7 +18,7 @@ extra_css = """
 .subs a{display:inline-block;font-size:.8rem;text-decoration:none;color:var(--tc,var(--cold));background:var(--ts,var(--cold-soft));border-radius:999px;padding:3px 10px}
 .subs a:hover{text-decoration:underline}
 .topic.soon{opacity:.75}
-.draft{background:#FFF4CC;border:1px solid #E8C33A;color:#5B4500;border-radius:12px;padding:10px 14px;font-size:.88rem;margin:0 0 14px}
+.draft{background:#EAF2F8;border:1px solid #9CC1DD;color:#1B3A55;border-radius:12px;padding:10px 14px;font-size:.88rem;margin:0 0 14px}
 """
 tail = t[t.index('// ---- Progress'):]
 
@@ -36,7 +36,7 @@ body = r"""</style>
 </div></header>
 
 <main><div class="in">
-<p class="draft" id="draftNote"><b>Draft for review.</b> All eight chapters are ready to try. The three extra chapters are being built. Sign-in and the leaderboard are switched off in this draft.</p>
+<p class="draft" id="draftNote"><b>Welcome.</b> All eight chapters are ready. Three extra chapters (Nucleic Acids, Lipid Metabolism, VSEPR) are coming soon. Sign-in and the game leaderboard will open later this semester; until then, your progress is saved on your own device.</p>
 <div id="cont" class="card continue" hidden></div>
 
 <h2>Suggested study path for each chapter</h2>

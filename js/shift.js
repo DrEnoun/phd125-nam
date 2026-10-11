@@ -274,7 +274,7 @@ window.NAMSHIFT={start(C){
    if(!rows.length){el.innerHTML='<p class="mut" style="margin:0">No scores yet. Finish a shift to be first on the board.</p>';return}
    const mine=j.me;el.innerHTML=`<ol class="sh-board">${rows.map(r=>`<li class="${r.me?'me':''}"><span class="r">${r.rank}</span><span>${esc(r.n)} <span class="c">${esc(r.c)}</span></span><span class="s">${r.s}</span></li>`).join('')}</ol>
     ${mine?`<p style="margin:10px 0 0;font-size:.92rem">You are <b>#${mine.rank}</b> of ${j.count} with <b>${mine.s}</b> points.</p>`:id&&id.ok?'<p class="mut" style="margin:10px 0 0;font-size:.9rem">Your score shows here within a minute or two of finishing a shift.</p>':'<p class="mut" style="margin:10px 0 0;font-size:.9rem">You are playing as a guest, so your score is not on the leaderboard'+(R()?' and does not count for the topic prizes. PHD125 students: sign in on the Study Hub page to qualify.':'.')+'</p>'}`}
-  catch(e){el.innerHTML='<p class="mut" style="margin:0">The leaderboard is not reachable right now. Your score is saved on this device and will be sent when you are back online.</p>'}}
+  catch(e){if(!(window.NAMTRACK&&NAMTRACK.ENDPOINT)){el.innerHTML='<p class="mut" style="margin:0">The leaderboard opens later this semester. Your best score is saved on this device.</p>';return}el.innerHTML='<p class="mut" style="margin:0">The leaderboard is not reachable right now. Your score is saved on this device and will be sent when you are back online.</p>'}}
  intro();
 }};
 })();
