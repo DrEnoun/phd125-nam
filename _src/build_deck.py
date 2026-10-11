@@ -79,6 +79,7 @@ sub('</style>', '.divn{font:800 54px/1 var(--font-display)!important;letter-spac
 # shrink long divider titles so they fit (max 3 lines, about 330 px tall)
 sub("function fitTitle(s){", "function fitDiv(s){const h=s.querySelector('.divt');if(!h||h.dataset.fit)return;let f=118;while((h.scrollHeight>300||h.scrollWidth>h.clientWidth+1)&&f>56){f-=6;h.style.setProperty('font-size',f+'px','important')}h.dataset.fit=1}\nfunction fitTitle(s){fitDiv(s);")
 sub('</style>', ':root{--tier-accent:var(--spark-400)}' + TIER_CSS + '\n</style>')
+sub('</style>', '.figtop img[src^="../../img/"]{max-height:400px}\n</style>')
 sub('</style>', '.chip.sub{background:rgba(212,255,58,.14);color:var(--spark-400);border:1px solid rgba(212,255,58,.45)}\n</style>')
 
 # tap a figure to zoom it (js/zoom.js); the tap must not turn the slide
@@ -92,6 +93,7 @@ EXTRA = {
     'paracetamol': 'CC(=O)Nc1ccc(O)cc1', 'methylpropane': 'CC(C)C', 'benzene': 'c1ccccc1', 'glycerol': 'OCC(O)CO', 'diethylether': 'CCOCC', 'ethanethiol': 'CCS', 'acetaldehyde': 'CC=O', 'formaldehyde': 'C=O', 'ascorbic': 'OC[C@H](O)[C@H]1OC(=O)C(O)=C1O',
     'formicacid': 'OC=O', 'ethylacetate': 'CCOC(C)=O', 'methylamine': 'CN', 'trimethylamine': 'CN(C)C', 'acetamide': 'CC(N)=O',
     'glucose': 'OC[C@H]1O[C@@H](O)[C@H](O)[C@@H](O)[C@@H]1O', 'fructose': 'OC[C@H]1O[C@@](O)(CO)[C@@H](O)[C@@H]1O', 'glyceraldehyde': 'O=C[C@H](O)CO', 'butyricacid': 'CCCC(=O)O', 'glycine': '[NH3+]CC(=O)[O-]', 'alanine': 'C[C@@H](C(=O)[O-])[NH3+]', 'serine': 'OC[C@@H](C(=O)[O-])[NH3+]', 'glycylglycine': 'NCC(=O)NCC(=O)O', 'cholesterol': 'C[C@H](CCCC(C)C)[C@H]1CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC=C4[C@@]3(CC[C@@H](C4)O)C)C', 'sorbitol': 'OC[C@H](O)[C@@H](O)[C@H](O)[C@H](O)CO',
+    'caffeine': 'Cn1cnc2c1c(=O)n(C)c(=O)n2C', 'hexane': 'CCCCCC', 'methanol': 'CO', 'acetonitrile': 'CC#N',
 }
 extra = ''.join(f'    {k}: {json.dumps(coords3d(v))},\n' for k, v in EXTRA.items())
 sub('    waterpair:', extra + '    waterpair:')

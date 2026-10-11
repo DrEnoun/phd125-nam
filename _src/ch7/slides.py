@@ -5,7 +5,7 @@ Original material by Dr. NAM: protein hydrolysis conditions (FGOB 18.10 gives he
 drugs, enzyme medicines). Protein and enzyme schematics are drawn by _src/proteinfigs.py."""
 from figs import mol, row, scheme, stack
 from sugars import fischer_row
-from proteinfigs import levels, tertiary, enzyme_models, rate_curves, inhibition, feedback
+from proteinfigs import tertiary, enzyme_models, rate_curves, inhibition, feedback
 
 LO1, LO2, LO3, LO4, LO5 = 'CH7-LO1', 'CH7-LO2', 'CH7-LO3', 'CH7-LO4', 'CH7-LO5'
 
@@ -226,12 +226,9 @@ def build():
     add({"t": "divider", "num": 5, "title": "Proteins", "lo": "CH7-LO4", "src": "FGOB 18.6–18.9",
          "blurb": "Four levels of structure: the sequence, local folding, the whole 3D shape, and how several chains fit together."})
     add({"t": "figure", "pos": "top", "sec": 5, "lo": LO4, "title": "Four levels of protein structure",
-         "fig": {"cap": "Primary → secondary → tertiary → quaternary.", "data": levels()},
-         "items": ["<b>Primary</b>: the sequence of amino acids, held by peptide bonds. Insulin's is 51 residues.",
-                   "<b>Secondary</b>: regular folding of the backbone, held by hydrogen bonds between C=O and N–H.",
-                   "<b>Tertiary</b>: the overall 3D shape of one chain, held by side-chain interactions.",
-                   "<b>Quaternary</b>: the arrangement of two or more chains (subunits)."],
-         "notes": "FGOB 18.6–18.9."})
+         "fig": {"cap": "1° sequence (peptide bonds) → 2° α-helix, β-sheet (backbone H-bonds) → 3° one chain in 3D (side chains) → 4° subunits. Image supplied by Dr. NAM; tap to zoom.", "data": "../../img/ch7/protein-levels.jpg"},
+         "items": [],
+         "notes": "FGOB 18.6–18.9. Figure supplied by Dr. NAM (replaces the earlier schematic)."})
     add({"t": "two", "sec": 5, "lo": LO4, "title": "Secondary structure",
          "lead": "Linus Pauling and Robert Corey used X-ray data to describe two regular shapes of the backbone.",
          "cols": [{"h": "α-Helix", "tone": "cold", "items": [
