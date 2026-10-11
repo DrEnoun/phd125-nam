@@ -36,7 +36,7 @@ body = r"""</style>
 </div></header>
 
 <main><div class="in">
-<p class="draft" id="draftNote"><b>Draft for review.</b> Chapters 1 and 2 are ready to try. Other chapters are being built. Sign-in and the leaderboard are switched off in this draft.</p>
+<p class="draft" id="draftNote"><b>Draft for review.</b> Chapters 1 to 3 are ready to try. Other chapters are being built. Sign-in and the leaderboard are switched off in this draft.</p>
 <div id="cont" class="card continue" hidden></div>
 
 <h2>Suggested study path for each chapter</h2>
