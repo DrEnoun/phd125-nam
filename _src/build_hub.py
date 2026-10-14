@@ -18,6 +18,10 @@ extra_css = """
 .subs a{display:inline-block;font-size:.8rem;text-decoration:none;color:var(--tc,var(--cold));background:var(--ts,var(--cold-soft));border-radius:999px;padding:3px 10px}
 .subs a:hover{text-decoration:underline}
 .topic.soon{opacity:.75}
+.lab.quest{background:linear-gradient(120deg,#1C1238 0%,#47205A 100%);border-left-color:#FFB547;margin-top:12px}
+.lab.quest .k{color:#FFB547}
+.lab.quest p{color:#D9CBE6}
+.lab.quest .btn{background:#FFB547;color:#1C1238}
 .draft{background:#EAF2F8;border:1px solid #9CC1DD;color:#1B3A55;border-radius:12px;padding:10px 14px;font-size:.88rem;margin:0 0 14px}
 """
 tail = t[t.index('// ---- Progress'):]
@@ -65,6 +69,15 @@ body = r"""</style>
   <p>Play chemistry with your hands in front of the webcam, or just use a mouse or touch. Build Lewis structures and watch molecules snap into their 3D shapes: a good warm-up for the VSEPR chapter.</p>
  </div>
  <div style="display:grid;gap:6px;justify-items:end"><a class="btn" href="https://drenoun.github.io/dr-nam-virtual-secret-lab/?hub" target="_blank" rel="noopener">Open the Virtual Lab ↗</a></div>
+</section>
+
+<section class="card lab quest" aria-labelledby="questTitle">
+ <div>
+  <p class="k">Pixel adventure game</p>
+  <h2 id="questTitle">Dr. NAM's ChemQuest</h2>
+  <p>Travel across nine worlds: match names, formulae and shapes, serve ionic compounds and balance equations. A fun way to keep the chemistry basics behind organic chemistry sharp.</p>
+ </div>
+ <div style="display:grid;gap:6px;justify-items:end"><a class="btn" href="https://drenoun.github.io/drnam-chemquest-world/" target="_blank" rel="noopener">Play ChemQuest ↗</a></div>
 </section>
 
 <footer>
